@@ -1,6 +1,6 @@
 Hostname,HostIP,OS
 P-BNAAE-FSW-701,10.160.2.71,nxos
-TAM3-MDFA1-ASW4.mckesson.com,10.164.254.198,ios
+TAM3-MDFA1-ASW4.domain.com,10.164.254.198,ios
 lab-host-11,10.1.1.1,ios
 lab-host-12,10.1.1.2,ios
 lab-host-21,10.2.1.1,nxos
