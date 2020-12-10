@@ -1,12 +1,12 @@
-# SSH Dicovery Script
+# SSH Discovery Script
 
-## Requires two files:
+## Requires two files
 
 ### tacacs.py - TACACS Authentication Container
 
 ### ip_range.py - IP Subnet to scan
 
-## tacacs.py Format:
+## tacacs.py Format
 
 ```py
 username = 'user.name'
@@ -15,9 +15,7 @@ password = 'your.password'
 
 `chmod to user only RW (chmod 600 tacacs.py)`
 
-
-
-## ip_range.py Format:
+## ip_range.py Format
 
 ```py
 net = ‘<subnet/mask>’
@@ -25,7 +23,7 @@ Example:
 net = '10.100.20.0/29'
 ```
 
-## Possible pip installs:
+## Possible pip installs
 
 scapy
 
@@ -33,7 +31,7 @@ netaddr
 
 netmiko
 
-## For Redhat and forks install pip via:
+## For Redhat and forks install pip via
 
 ```sh
 # Install PIP if needed
@@ -51,7 +49,7 @@ sudo pip install config
 sudo  pip install --pre scapy
 ```
 
-### Output format:
+### Output format
 
 Uncomment desired format. Starting at line 77 of `ssh_discovery.py`:
 
