@@ -1,0 +1,5 @@
+Hostname,HostIP,OS
+lab-host-11,10.1.1.1,ios
+lab-host-12,10.1.1.2,ios
+lab-host-21,10.2.1.1,nxos
+lab-host-22,10.2.1.2,nxos

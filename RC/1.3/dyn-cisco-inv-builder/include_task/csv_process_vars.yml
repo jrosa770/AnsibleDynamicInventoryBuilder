@@ -1,0 +1,131 @@
+---
+- name: Copy file with owner and permissions
+  copy:
+    src: input/host_list.csv
+    dest: input/{{ reference }}.csv
+    mode: '0666'
+
+- name: Load Playbook specific Variable File
+  include_vars: playvars/csv.yml
+
+- name: new variable with current date time
+  set_fact: time_stamp="{{lookup('pipe','date \"+%m-%d-%Y_%H%M\"')}}"
+
+- name: Generate Inventory Host Entries
+  template:
+    src: template/csv_to_inventory-group.j2
+    dest: output/discovery/groups-{{ reference }}.ini
+
+- name: Generate Inventory Dynamic Group Host Entries
+  template:
+    src: template/csv_to_inventory-host.j2
+    dest: output/discovery/hosts-{{ reference }}.ini
+
+- name: Generate Inventory OS Group Vars Entries
+  template:
+    src: template/csv_to_inventory-host-os_grp.j2
+    dest: output/discovery/hosts_by_os-{{ reference }}.yml
+
+- name: Create Hostvars Backup
+  copy:
+    src: ../inventory/hosts
+    dest: ../inventory/hosts-{{ reference }}.ini
+    mode: preserve
+
+- name: Insert in Inventory Section dynamic_inventory children
+  blockinfile:
+    block: "{{ lookup('file', 'output/discovery/groups-{{ reference }}.ini') }}"
+    dest: ../inventory/hosts
+    marker: "#{{ reference }}-GROUPS"
+    insertbefore: "#DYNAMIC_GRPS"
+
+- name: Insert in Inventory Section for HOSTS
+  blockinfile:
+    block: "{{ lookup('file', 'output/discovery/hosts-{{ reference }}.ini') }}"
+    dest: ../inventory/hosts
+    marker: "#{{ reference }}-HOSTS"
+    insertbefore: "#DYNAMIC_DEVICES"
+
+- name: Load Inventory OS Group Vars Entries
+  include_vars: output/discovery/hosts_by_os-{{ reference }}.yml
+
+- name: Insert in Inventory Section for IOS Group HOSTS
+  blockinfile:
+    block: |
+      {{ item.name }}
+    path: ../inventory/hosts
+    marker: "#{{ reference }}-IOSHOSTS"
+    insertbefore: "#IOS_GRP"
+  when: (item.dyn_os == "ios")
+  with_items:
+      - "{{ dyn_hosts }}"
+
+- name: Insert in Inventory Section for NXOS Group HOSTS
+  blockinfile:
+    block: |
+      {{ item.name }}
+    path: ../inventory/hosts
+    marker: "#{{ reference }}-NXOSHOSTS"
+    insertbefore: "#NXOS_GRP"
+  when: (item.dyn_os == "nxos")
+  with_items:
+      - "{{ dyn_hosts }}"
+
+- name: Insert in Inventory Section for IOSXR Group HOSTS
+  blockinfile:
+    block: |
+      {{ item.name }}
+    path: ../inventory/hosts
+    marker: "#{{ reference }}-IOSXRHOSTS"
+    insertbefore: "#IOSXR_GRP"
+  when: (item.dyn_os == "iosxr")
+  with_items:
+      - "{{ dyn_hosts }}"
+
+- name: Insert in Inventory Section for ACI Group HOSTS
+  blockinfile:
+    block: |
+      {{ item.name }}
+    path: ../inventory/hosts
+    marker: "#{{ reference }}-ACIHOSTS"
+    insertbefore: "#ACI_GRP"
+  when: (item.dyn_os == "aci")
+  with_items:
+      - "{{ dyn_hosts }}"
+
+- name: Clean Block Marker-HOSTS
+  lineinfile:
+    path: ../inventory/hosts
+    regexp: '\#.*\-GROUPS'
+    state: absent
+
+- name: Clean Block Marker-HOSTS
+  lineinfile:
+    path: ../inventory/hosts
+    regexp: '\#.*\-HOSTS'
+    state: absent
+
+- name: Clean Block Marker-IOSHOSTS
+  lineinfile:
+    path: ../inventory/hosts
+    regexp: '\#.*\-IOSHOSTS'
+    state: absent
+
+- name: Clean Block Marker-NXOSHOSTS
+  lineinfile:
+    path: ../inventory/hosts
+    regexp: '\#.*\-NXOSHOSTS'
+    state: absent
+
+- name: Clean Block Marker-IOSXRHOSTS
+  lineinfile:
+    path: ../inventory/hosts
+    regexp: '\#.*\-IOSXRHOSTS'
+    state: absent
+
+- name: Clean Block Marker-ACIHOSTS
+  lineinfile:
+    path: ../inventory/hosts
+    regexp: '\#.*\-ACIHOSTS'
+    state: absent
+...

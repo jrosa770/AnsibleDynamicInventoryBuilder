@@ -1,0 +1,6 @@
+{% for item in csv_extract.split("\n") %}
+{%   if loop.index != 1 %}
+{%     set list = item.split(",") %}
+{{ list[0]|trim() }}_DYN
+{%   endif %}
+{% endfor %}

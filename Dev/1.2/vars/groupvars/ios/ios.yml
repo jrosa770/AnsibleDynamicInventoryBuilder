@@ -1,0 +1,80 @@
+---
+smtp_server: "mail.changehealthcare.com"
+domain_name: "changehealthcare.com"
+
+vlans_add:
+ INFRASTRUCTURE: { id: 11, }
+ SERVERS: { id: 22, }
+ DATA_VLAN: { id: 33, }
+ VOICE_VLAN: { id: 44, }
+ WIRELESS_VLAN: { id: 55, }
+vlans: "{{ vlans_add }}"
+  
+#patch_vars
+# TACACS #
+tacacs_ip: "10.0.0.1"
+tacacs_key: "tac_key"
+# SNMP Main #
+snmpV2: "enabled"
+snmp_comm_v2: "snmpv2comm"
+snmpV3: "disabled"
+SNMPv3Group: "SNMPv3GroupName"
+SNMPv3User: "SNMPv3UserName"
+SNMPv3UserPass: "SNMPv3UsePassword"
+snmp_string_location: "somewhere out there"
+snmp_string_contact: "somebody out there"
+# SNMP Traps #
+# All means just that "all available traps" #
+snmp_server_enable_traps_all: "disable"
+# Traps by Feature #
+snmp_server_enable_traps_snmp: "disable"
+snmp_server_enable_traps_flowmon: "disable"
+snmp_server_enable_traps_entity_perf: "disable"
+snmp_server_enable_traps_call_home: "disable"
+snmp_server_enable_traps_tty: "disable"
+snmp_server_enable_traps_rep: "disable"
+snmp_server_enable_traps_vtp: "disable"
+snmp_server_enable_traps_vlan: "disable"
+snmp_server_enable_traps_port_security: "disable"
+snmp_server_enable_traps_license: "disable"
+snmp_server_enable_traps_smart_license: "disable"
+snmp_server_enable_traps_cpu: "disable"
+snmp_server_enable_traps_memory: "disable"
+snmp_server_enable_traps_stackwise: "disable"
+snmp_server_enable_traps_fru_ctrl: "disable"
+snmp_server_enable_traps_flash: "disable"
+snmp_server_enable_traps_energywise: "disable"
+snmp_server_enable_traps_power_ethernet: "disable"
+snmp_server_enable_traps_entity: "disable"
+snmp_server_enable_traps_envmon: "disable"
+snmp_server_enable_traps_cef: "disable"
+snmp_server_enable_traps_ipsla: "disable"
+snmp_server_enable_traps_entity_diag: "disable"
+snmp_server_enable_traps_bfd: "disable"
+snmp_server_enable_traps_config: "disable"
+snmp_server_enable_traps_event_manager: "disable"
+snmp_server_enable_traps_hsrp: "disable"
+snmp_server_enable_traps_bridge: "disable"
+snmp_server_enable_traps_stpx: "disable"
+snmp_server_enable_traps_syslog: "disable"
+snmp_server_enable_traps_nhrp: "disable"
+snmp_server_enable_traps_local_auth: "disable"
+snmp_server_enable_traps_lisp: "disable"
+snmp_server_enable_traps_dhcp: "disable"
+snmp_server_enable_traps_auth_framework: "disable"
+snmp_server_enable_traps_mpls: "disable"
+snmp_server_enable_traps_ipmulticast: "disable"
+snmp_server_enable_traps_msdp: "disable"
+snmp_server_enable_traps_pim: "disable"
+snmp_server_enable_traps_eigrp: "disable"
+snmp_server_enable_traps_isis: "disable"
+snmp_server_enable_traps_bgp: "disable"
+snmp_server_enable_traps_ospf: "disable"
+snmp_server_enable_traps_ospfv3: "disable"
+snmp_server_enable_traps_ike: "disable"
+snmp_server_enable_traps_ipsec: "disable"
+snmp_server_enable_traps_errdisable: "disable"
+snmp_server_enable_traps_rf: "disable"
+snmp_server_enable_traps_transceiver: "disable"
+snmp_server_enable_traps_mac_notification: "disable"
+snmp_server_enable_traps_vrfmib: "disable"

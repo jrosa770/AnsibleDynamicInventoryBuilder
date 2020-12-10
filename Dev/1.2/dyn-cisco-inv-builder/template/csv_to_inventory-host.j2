@@ -1,0 +1,13 @@
+{% for item in csv_extract.split("\n") %}
+{%   if loop.index != 1 %}
+{%     set list = item.split(",") %}
+
+# == {{ list[0]|trim() }} == #
+# Added with {{ reference }}-{{ time_stamp }}
+[{{ list[0]|trim() }}_DYN:vars]
+ansible_network_os={{ list[2]|trim() }}
+
+[{{ list[0]|trim() }}_DYN]
+{{ list[0]|trim() }} ansible_host={{ list[1]|trim() }}
+{%   endif %}
+{% endfor %}

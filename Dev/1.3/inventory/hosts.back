@@ -1,0 +1,152 @@
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_connection = local
+
+[cisco:children]
+dynamic_inventory
+ios
+nxos
+iosxr
+aci
+
+[ios:children]
+10.253.180.74_DYN
+10.253.180.73_DYN
+#IOS_GRP
+
+[nxos:children]
+#10.253.220.64_DYN
+#10.253.192.102_DYN
+P-BNAAE-FSW-701_DYN
+#NXOS_GRP
+
+[iosxr:children]
+10.253.180.70_DYN
+10.253.192.103_DYN
+#IOSXR_GRP
+
+[aci:children]
+aci_prod
+aci_dev
+10.253.180.72_DYN
+10.253.192.107_DYN
+#ACI_GRP
+
+[aci_dev]
+lab-apic ansible_host=10.165.2.214
+
+[aci_prod]
+dev-apic ansible_host=10.90.20.11
+
+[infoblox:children]
+infoblox_prod
+infoblox_dev
+
+[infoblox_prod]
+
+[infoblox_dev]
+
+[panos:children]
+panos_prod
+panos_dev
+
+[panos_prod]
+
+[panos_dev]
+
+[world_net:children]
+usa_net
+
+[usa_net:children]
+ga_net
+tn_net
+
+[ga_net]
+
+[tn_net]
+
+[dynamic_inventory:children]
+10.253.180.74_DYN
+10.253.180.73_DYN
+P-BNAAE-FSW-701_DYN
+10.253.220.64_DYN
+10.253.192.102_DYN
+10.253.180.70_DYN
+10.253.192.103_DYN
+10.253.180.72_DYN
+10.253.192.107_DYN
+#DYNAMIC_GRPS
+
+# == 10.253.180.74 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[10.253.180.74_DYN:vars]
+ansible_network_os=ios
+
+[10.253.180.74_DYN]
+10.253.180.74 ansible_host=10.253.180.74
+
+# == 10.253.180.73 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[10.253.180.73_DYN:vars]
+ansible_network_os=ios
+
+[10.253.180.73_DYN]
+10.253.180.73 ansible_host=10.253.180.73
+
+# == P-BNAAE-FSW-701 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[P-BNAAE-FSW-701_DYN:vars]
+ansible_network_os=nxos
+
+[P-BNAAE-FSW-701_DYN]
+P-BNAAE-FSW-701 ansible_host=10.160.2.71
+
+# == 10.253.220.64 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[10.253.220.64_DYN:vars]
+ansible_network_os=nxos
+
+[10.253.220.64_DYN]
+10.253.220.64 ansible_host=10.253.220.64
+
+# == 10.253.192.102 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[10.253.192.102_DYN:vars]
+ansible_network_os=nxos
+
+[10.253.192.102_DYN]
+10.253.192.102 ansible_host=10.253.192.102
+
+# == 10.253.180.70 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[10.253.180.70_DYN:vars]
+ansible_network_os=iosxr
+
+[10.253.180.70_DYN]
+10.253.180.70 ansible_host=10.253.180.70
+
+# == 10.253.192.103 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[10.253.192.103_DYN:vars]
+ansible_network_os=iosxr
+
+[10.253.192.103_DYN]
+10.253.192.103 ansible_host=10.253.192.103
+
+# == 10.253.180.72 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[10.253.180.72_DYN:vars]
+ansible_network_os=aci
+
+[10.253.180.72_DYN]
+10.253.180.72 ansible_host=10.253.180.72
+
+# == 10.253.192.107 == #
+# Added with test-1.3-04_josrosa-03-21-2020_1040
+[10.253.192.107_DYN:vars]
+ansible_network_os=aci
+
+[10.253.192.107_DYN]
+10.253.192.107 ansible_host=10.253.192.107
+#DYNAMIC_DEVICES
+#EOF

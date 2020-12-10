@@ -1,0 +1,8 @@
+dyn_hosts:
+{% for item in csv_extract.split("\n") %}
+{%   if loop.index != 1 %}
+{%     set list = item.split(",") %}
+  - name: {{ list[0]|trim() }}_DYN
+    dyn_os: {{ list[2]|trim() }}
+{%   endif %}
+{% endfor %}

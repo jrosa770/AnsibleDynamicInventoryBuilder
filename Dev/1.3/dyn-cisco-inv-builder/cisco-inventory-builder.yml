@@ -1,0 +1,58 @@
+
+- hosts: localhost
+  gather_facts: yes
+  connection: local
+
+  vars_prompt:
+  - name: reference_prompt
+    prompt: "Request Ticket or Reference ID. (To be Used as Process ID)"
+    private: no
+
+  tasks:
+  - name: account $USER
+    shell: "echo $USER"
+    register: play_user
+    changed_when: false
+    check_mode: no
+
+  - debug:
+      msg: "Running as '{{ play_user.stdout }}'"
+
+  - name: Set reference var
+    set_fact:
+      reference: "{{ reference_prompt }}_{{ play_user.stdout }}"
+
+  - name: new variable with current date time
+    set_fact: time_stamp="{{lookup('pipe','date \"+%m-%d-%Y_%H%M\"')}}"
+
+  - debug:
+      msg: "Updating Local Inventory File from CSV"
+
+  - name: Update from CSV Task
+    include: include_task/csv_process_vars.yml
+
+  - name: Cleanup CSV File
+    file:
+      path: input/{{ reference }}.csv
+      state: absent
+
+  - name: Clean Playbook HOSTS File
+    file:
+      path: output/discovery/hosts-{{ reference }}.ini
+      state: absent
+
+  - name: Clean Playbook GROUPS File
+    file:
+      path: output/discovery/groups-{{ reference }}.ini
+      state: absent
+
+  - name: Clean Playbook HOSTS File
+    file:
+      path: ../inventory/hosts-{{ reference }}.ini
+      state: absent
+
+  - name: Clean Playbook HOSTS By OS File
+    file:
+      path: output/discovery/hosts_by_os-{{ reference }}.yml
+      state: absent
+...

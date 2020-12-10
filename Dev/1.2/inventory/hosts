@@ -1,0 +1,47 @@
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_connection = local
+
+[cisco:children]
+dynamic_inventory
+
+[dynamic_inventory:children]
+lab-host-11_DYN
+lab-host-12_DYN
+lab-host-21_DYN
+lab-host-22_DYN
+#DYNAMIC_GRPS
+
+# == lab-host-11 == #
+# Added with 03192020-DEVTEST_josrosa-03-19-2020_1736
+[lab-host-11_DYN:vars]
+ansible_network_os=ios
+
+[lab-host-11_DYN]
+lab-host-11 ansible_host=10.1.1.1
+
+# == lab-host-12 == #
+# Added with 03192020-DEVTEST_josrosa-03-19-2020_1736
+[lab-host-12_DYN:vars]
+ansible_network_os=ios
+
+[lab-host-12_DYN]
+lab-host-12 ansible_host=10.1.1.2
+
+# == lab-host-21 == #
+# Added with 03192020-DEVTEST_josrosa-03-19-2020_1736
+[lab-host-21_DYN:vars]
+ansible_network_os=nxos
+
+[lab-host-21_DYN]
+lab-host-21 ansible_host=10.2.1.1
+
+# == lab-host-22 == #
+# Added with 03192020-DEVTEST_josrosa-03-19-2020_1736
+[lab-host-22_DYN:vars]
+ansible_network_os=nxos
+
+[lab-host-22_DYN]
+lab-host-22 ansible_host=10.2.1.2
+#DYNAMIC_DEVICES
+#EOF
