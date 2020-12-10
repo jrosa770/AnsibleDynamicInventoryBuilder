@@ -31,7 +31,7 @@
 ```csv
 Hostname,HostIP,OS
 P-BNAAE-FSW-701,10.160.2.71,nxos
-TAM3-MDFA1-ASW4.mckesson.com,10.164.254.198,ios
+TAM3-MDFA1-ASW4.domain.com,10.164.254.198,ios
 lab-host-11,10.1.1.1,ios
 lab-host-12,10.1.1.2,ios
 lab-host-21,10.2.1.1,nxos
@@ -43,7 +43,7 @@ lab-host-22,10.2.1.2,nxos
 | Hostname                     | HostIP         | OS   | 
 |------------------------------|----------------|------| 
 | P-BNAAE-FSW-701              | 10.160.2.71    | nxos | 
-| TAM3-MDFA1-ASW4.mckesson.com | 10.164.254.198 | ios  | 
+| TAM3-MDFA1-ASW4.domain.com | 10.164.254.198 | ios  | 
 | lab-host-11                  | 10.1.1.1       | ios  | 
 | lab-host-12                  | 10.1.1.2       | ios  | 
 | lab-host-21                  | 10.2.1.1       | nxos | 
@@ -64,7 +64,7 @@ iosxr
 aci
 
 [ios:children]
-TAM3-MDFA1-ASW4.mckesson.com_DYN
+TAM3-MDFA1-ASW4.domain.com_DYN
 lab-host-11_DYN
 lab-host-12_DYN
 #IOS_GRP
@@ -118,7 +118,7 @@ tn_net
 
 [dynamic_inventory:children]
 P-BNAAE-FSW-701_DYN
-TAM3-MDFA1-ASW4.mckesson.com_DYN
+TAM3-MDFA1-ASW4.domain.com_DYN
 lab-host-11_DYN
 lab-host-12_DYN
 lab-host-21_DYN
@@ -133,13 +133,13 @@ ansible_network_os=nxos
 [P-BNAAE-FSW-701_DYN]
 P-BNAAE-FSW-701 ansible_host=10.160.2.71
 
-# == TAM3-MDFA1-ASW4.mckesson.com == #
+# == TAM3-MDFA1-ASW4.domain.com == #
 # Added with test-1.3-03_josrosa-03-26-2020_0854
-[TAM3-MDFA1-ASW4.mckesson.com_DYN:vars]
+[TAM3-MDFA1-ASW4.domain.com_DYN:vars]
 ansible_network_os=ios
 
-[TAM3-MDFA1-ASW4.mckesson.com_DYN]
-TAM3-MDFA1-ASW4.mckesson.com ansible_host=10.164.254.198
+[TAM3-MDFA1-ASW4.domain.com_DYN]
+TAM3-MDFA1-ASW4.domain.com ansible_host=10.164.254.198
 
 # == lab-host-11 == #
 # Added with test-1.3-03_josrosa-03-26-2020_0854
