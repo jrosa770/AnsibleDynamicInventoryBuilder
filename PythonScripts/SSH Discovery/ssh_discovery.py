@@ -75,10 +75,10 @@ for host in addresses:
             hostname = result[1]
             print(hostname)
             device.disconnect()
-            etc_hosts_format()
+#            etc_hosts_format()
 #            bind_a_format()
 #            generic_format()
-#            ansible_inventory_format()
+            ansible_inventory_format()
             log_ping()
         elif res == 2:
             print "no response from", host

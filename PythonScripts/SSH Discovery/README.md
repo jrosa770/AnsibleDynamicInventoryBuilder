@@ -50,3 +50,14 @@ sudo pip install config
 
 sudo  pip install --pre scapy
 ```
+
+### Output format:
+
+Uncomment desired format. Starting at line 77 of `ssh_discovery.py`:
+
+```py
+#            etc_hosts_format()
+#            bind_a_format()
+#            generic_format()
+            ansible_inventory_format()
+```
